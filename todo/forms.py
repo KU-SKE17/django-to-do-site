@@ -6,19 +6,19 @@ class TodoForm(forms.ModelForm):
     """Form for inputing a new todo item.
     The done field is not shown, since it's useless to add a todo that
     is already done.
-    """    
+    """
     class Meta:
         model = Todo
         fields = ['description'] # don't show 'done' field on form for a new todo
+        exclude = ['done', 'user']
         # this doesn't work
-        hidden = ['id']
+        # hidden = ['id']
         # custom labels for input fields
         labels = {
             'description': "Description of todo",
             'done': "Is it Done?",
         }
 
-    
     def clean_description(self):
         """Verify the description has required minimum length"""
         description = self.cleaned_data['description']

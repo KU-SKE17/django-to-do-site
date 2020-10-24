@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Current Todo Items</h3>
+<h3>Current Todo Items for {{ user.first_name }}</h3>
 
 <p>Click the "Done" link when an item is done.</p>
 
@@ -41,5 +41,9 @@
 	&nbsp;&nbsp;
 	<button type="reset">Clear</button>
 </form>
+
+<p>
+    <a href="{% url 'logout' %}">Logout</a>
+</p>
 
 {% endblock %}

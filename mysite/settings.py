@@ -66,6 +66,8 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = 'todo:index'
+
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
