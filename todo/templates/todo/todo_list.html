@@ -1,0 +1,45 @@
+<!-- template for generic.ListView with model=Todo -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Current Todo Items</h3>
+
+<p>Click the "Done" link when an item is done.</p>
+
+<table border='1'>
+<tr><th width="80%">Description</th> <th>Done?</th></tr>
+{% for todo in todo_list %}
+<tr><td valign="top">
+{{todo.description}}
+</td>
+<td valign="top">
+<a href="{% url 'todo:done' todo.id %}">Done</a>
+</td>
+</tr>
+{% empty %}
+<tr><td>Nothing to do</td><td>&nbsp;</td></tr>
+{% endfor %}
+</table>
+<!-- Django Messages Framework -->
+{% if messages %}
+  {% for msg in messages %}
+  <p class="{{msg.tags}}">{{ msg }}</p>
+  {% endfor %}
+{% endif %}
+
+<hr/>
+<h3>Add a Todo</h3>
+
+<!--
+<div id="add_todo" style="border:1px solid black;">
+ -->
+<form action="{% url 'todo:add' %}" method='post'>
+    {% csrf_token %}
+
+	{{ form.as_p }}
+	<input type="submit" value='Save Todo' />
+	&nbsp;&nbsp;
+	<button type="reset">Clear</button>
+</form>
+
+{% endblock %}

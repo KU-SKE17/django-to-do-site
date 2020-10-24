@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- enter data for a new todo record -->
+<h3>Create New Todo</h3>
+
+<form action="{% url 'todo:add' %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value='Save Todo' />
+    &nbsp;&nbsp;
+    <button type="reset">Reset</button>
+    &nbsp;&nbsp;
+    <a href="{% url 'todo:index' %}">Cancel</a>
+</form>
+{% endblock %}
